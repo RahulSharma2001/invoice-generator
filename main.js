@@ -191,15 +191,7 @@ function preview() {
 
 const bd = document.getElementsByTagName("body")[0];
 const mn = document.getElementById("main");
-/* let rbtn = document.getElementById("review");
-rbtn.addEventListener("click", (e) => {
-  mn.style.filter = "blur(2px)";
-  const pop = document.getElementById("popup");
-  pop.style.display = "block";
-  rbtn.disabled = true;
-  preview();
-  id="review"
-}); */
+
 
 function reviewIn() {
   mn.style.filter = "blur(2px)";
@@ -212,7 +204,8 @@ bd.addEventListener("click", (e) => {
   if (
     e.target.id == "bd" ||
     e.target.id == "right" ||
-    e.target.id == "invoice"
+    e.target.id == "invoice"||
+    e.target.id == "left"
   ) {
     const pop = document.getElementById("popup");
     pop.style.display = "none";
