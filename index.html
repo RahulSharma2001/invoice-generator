@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./images/logo.jpg" type="image/x-icon" />
+    <script
+      src="https://kit.fontawesome.com/b0de7f475e.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Generate Invoice</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body id="bd">
+    <form action="#" class="main" id="main" onsubmit="reviewIn()">
+      <section class="left" id="invoice">
+        <div class="top">
+          <div class="date">
+            <span>Current date:</span>
+            <span id="current-date" class="normal"></span><br />
+            <span>Due date:</span> <input id="due-date" type="date" required />
+          </div>
+          <div class="invoice-number">
+            <label for="invoice-number"><span>Invoice Number:</span></label>
+            <input id="invoice-number" type="number" value="1" />
+          </div>
+        </div>
+        <hr />
+        <div class="top1">
+          <div>
+            <span id="bill-from"> Bill to </span>
+            <input
+              type="text"
+              id="to-name"
+              placeholder="Who is this invoice to"
+              required
+            /><input
+              type="email"
+              placeholder="Email Address"
+              id="to-email"
+              required
+            /><input
+              type="text"
+              placeholder="Billing Address"
+              id="to-address"
+              required
+            />
+          </div>
+          <div>
+            <span id="bill-to"> Bill from </span>
+            <input
+              type="text"
+              placeholder="Who is this invoice from"
+              id="f-name"
+              required
+            /><input
+              type="email"
+              placeholder="Email Address"
+              id="f-email"
+              required
+            /><input
+              type="text"
+              placeholder="Billing Address"
+              id="f-address"
+              required
+            />
+          </div>
+        </div>
+        <div class="middle">
+          <table id="detail-table">
+            <tr>
+              <th>ITEM</th>
+              <th>QTY</th>
+              <th>PRICE/RATE</th>
+              <th>ACTION</th>
+            </tr>
+            <tr class="items">
+              <td>
+                <input
+                  type="text"
+                  placeholder="Item Name"
+                  class="item-name"
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="Item Description"
+                  class="item-desc"
+                  required
+                />
+              </td>
+              <td><input type="number" value="1" class="quantity" /></td>
+              <td><input type="number" value="1" class="price" /></td>
+              <td>
+                <i class="fa-solid fa-trash-can delete-btn"></i>
+              </td>
+            </tr>
+          </table>
+          <button id="add-item" type="button">Add Item</button>
+        </div>
+        <div class="bottom" id="bottom">
+          <div><span>Subtotal:</span> <span id="subtotal">$0</span></div>
+          <div>
+            <span>Discount:</span
+            ><span class="normal">(<span id="dx-per">0</span>%)</span>
+            <span id="discount">$0</span>
+          </div>
+          <div>
+            <span>Tax:</span
+            ><span class="normal">(<span id="tx-per">0</span>%)</span>
+            <span id="tax">$0</span>
+          </div>
+
+          <div>
+            <span>Total:</span>
+            <span id="total"></span>
+          </div>
+        </div>
+        <div class="footer">
+          <div class="note">Notes:</div>
+          <textarea
+            name=""
+            id="textarea"
+            placeholder="Thanks for your bussiness!!"
+          ></textarea>
+        </div>
+      </section>
+      <section class="right" id="right">
+        <button type="submit" id="review">Review Invoice</button>
+        <div class="currency">
+          <span>Currency</span>
+          <select id="currency">
+            <option value="$">USD (United States Dollar)</option>
+            <option value="£">GBP (British Pound Sterling)</option>
+            <option value="¥">JPY (Japanese Yen)</option>
+            <option value="$">CAD (Canadian Dollar)</option>
+            <option value="$">AUD (Australian Dollar)</option>
+            <option value="$">SGD (Signapore Dollar)</option>
+            <option value="¥">CNY (Chinese Renminbi)</option>
+            <option value="₿">BTC (Bitcoin)</option>
+          </select>
+        </div>
+        <div class="tax-rate">
+          <span>Tax rate:</span>
+          <div class="tax-percent">
+            <input
+              type="text"
+              id="tax-percent"
+              placeholder="0.0"
+              value="0"
+            /><span class="percent">%</span>
+          </div>
+        </div>
+        <div class="discount">
+          <span>Discount:</span>
+          <div class="discount-percent">
+            <input
+              type="text"
+              id="discount-percent"
+              placeholder="0.0"
+              value="0"
+            /><span class="percent">%</span>
+          </div>
+          <h1 style="margin-top: 50px">Invoice Generator</h1>
+        </div>
+      </section>
+    </form>
+    <div id="popup">
+      <div id="pop-container">
+        <div id="top">
+          <div class="name">
+            <h1 id="billto">Rahul</h1>
+            <p>invoice #: <span id="invoice-no"></span></p>
+          </div>
+          <div>
+            <h2>Amount Due:</h2>
+            <p id="amount"></p>
+          </div>
+        </div>
+        <div id="main-container">
+          <div id="bill-details">
+            <div id="plain-1">
+              <span class="pop-h">Bill To:</span>
+              <p id="bt-name"></p>
+              <p id="bt-address"></p>
+              <p id="bt-email"></p>
+            </div>
+            <div id="plain-2">
+              <span class="pop-h">Bill From:</span>
+              <p id="bf-name"></p>
+              <p id="bf-address"></p>
+              <p id="bf-email"></p>
+            </div>
+            <div id="plain-3">
+              <span class="pop-h">Date of Issue:</span>
+              <p id="date"></p>
+            </div>
+          </div>
+          <div class="pop-item-head">
+            <span>QTY</span><span>DESCRIPTION</span><span>PRICE</span
+            ><span>AMOUNT</span>
+          </div>
+          <table id="pop-detail-table"></table>
+          <div class="bottom">
+            <div><span>SUBTOTAL:</span> <span id="pop-subtotal">0</span></div>
+            <div>
+              <span>TOTAL:</span>
+              <span id="pop-total">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="popBottom">
+        <button type="button" onclick="sendInvoice()">Send Invoice</button>
+        <button id="download" type="button">Download</button>
+      </div>
+
+      <span id="send-invoice-msg"></span>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+      integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="main.js"></script>
+  </body>
+</html>
